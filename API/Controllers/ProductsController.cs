@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Infrastructure.Data;
 using Core.Entities;
 using Core.Interfaces;
 
@@ -29,6 +21,16 @@ namespace API.Controllers
        [HttpGet("{id}")]
        public async Task<ActionResult<Product>> getProduct(int id){
            return await _repo.GetProductByIdAsync(id);
+       }
+
+       [HttpGet("brands")]
+       public async Task<ActionResult<ProductBrand>> getProductBrands(){
+           return Ok(await _repo.GetProductBrandsAsync());
+       }
+
+       [HttpGet("types")]
+       public async Task<ActionResult<ProductType>> getProductTypes(){
+           return Ok(await _repo.GetProductTypesAsync());
        }
     }
 }
