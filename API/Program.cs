@@ -11,7 +11,12 @@ builder.Services.AddDbContext<StoreContext>(options =>
 {
    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddCors(opt =>
+    opt.AddPolicy("CorsPolicy", policy => 
+        {
+        policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+        })
+    );
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
@@ -52,7 +57,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseStaticFiles();
-
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
