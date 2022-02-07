@@ -11,15 +11,20 @@ builder.Services.AddDbContext<StoreContext>(options =>
 {
    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 builder.Services.AddCors(opt =>
     opt.AddPolicy("CorsPolicy", policy => 
-        {
+    {
         policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-        })
-    );
+    })
+);
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
+
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -44,12 +49,11 @@ using (var scope= app.Services.CreateScope()){
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
-// Configure the HTTP request pipeline.
+
 app.UseSwagger();
+
 app.UseSwaggerUI();
-/*if (app.Environment.IsDevelopment())
-{    
-}*/
+
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
@@ -57,7 +61,9 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseStaticFiles();
+
 app.UseCors("CorsPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();

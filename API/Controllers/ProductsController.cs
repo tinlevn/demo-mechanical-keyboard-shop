@@ -52,12 +52,14 @@ namespace API.Controllers
        }
 
        [HttpGet("brands")]
-       public async Task<ActionResult<ProductBrand>> getProductBrands(){
+       public async Task<ActionResult<ProductBrand>> getProductBrands()
+       {
            return Ok(await _productsBrandRepo.ListAllAsync());
        }
 
        [HttpGet("types")]
-       public async Task<ActionResult<ProductType>> getProductTypes(){
+       public async Task<ActionResult<ProductType>> getProductTypes()
+       {
            return Ok(await _productsTypeRepo.ListAllAsync());
        }
     }
