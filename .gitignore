@@ -3,4 +3,4 @@ bin
 appsettings.json
 *.db
 \.vs
-WeatherForecastController.cs
+client/src/assets/
