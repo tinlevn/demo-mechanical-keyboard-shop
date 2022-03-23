@@ -29,13 +29,11 @@ export class AppComponent {
 
   loadCurrentUser(){
     const token = localStorage.getItem('token');
-    if (token){
-      this.accountService.loadCurrentUser(token).subscribe(() =>
+    this.accountService.loadCurrentUser(token).subscribe(() =>
       {
         console.log('loaded user');
       }, error =>{
         console.log(error);
       });
     }
-  }
 }
