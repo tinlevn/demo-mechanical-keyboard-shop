@@ -24,7 +24,7 @@ namespace Core.Specifications
                         AddOrdereBy(p => p.Price);
                         break;
                     case "priceDesc":
-                        AddOrdereByDesc(p =>p.Price);
+                        AddOrderByDesc(p =>p.Price);
                         break;
                     default:
                         AddOrdereBy(p=>p.Name);
