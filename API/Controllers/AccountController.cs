@@ -58,13 +58,13 @@ namespace API.Controllers
         return BadRequest("Problem updating user address");
     }
 
-    //[Authorize]
+    [Authorize]
     [HttpGet("address")]
-    public async Task<ActionResult<AddressDto>> GetUserAddress(AddressDto address)
+    public async Task<ActionResult<AddressDto>> GetUserAddress()
     {
         var user = await _userManager.FindByEmailWithAddressAsync(User);
 
-        return _mapper.Map<Address, AddressDto>(user.Address);
+        return _mapper.Map<AddressDto>(user.Address);
     }
 
     [HttpPost("login")]
@@ -112,7 +112,6 @@ namespace API.Controllers
             Email = user.Email
         };
     }
-
 
 }
 }
