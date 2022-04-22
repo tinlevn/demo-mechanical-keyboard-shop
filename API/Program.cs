@@ -44,6 +44,7 @@ builder.Services.AddScoped<IBasketRepository,BasketRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
