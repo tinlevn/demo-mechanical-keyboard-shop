@@ -37,6 +37,8 @@ builder.Services.AddCors(opt =>
     })
 );
 
+builder.Services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
