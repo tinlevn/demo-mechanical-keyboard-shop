@@ -4,3 +4,4 @@ appsettings.json
 *.db
 \.vs
 client/src/assets/
+wwwroot
